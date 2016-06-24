@@ -12,7 +12,7 @@ Web Bluetooth requires an SSL connection, so be sure to generate your
 keys following the steps below.
 
 Unless you use proper SSL certificates (such as those provided by
-[Let's Encrypt](https://letsencrypt.org/) you will have to whitelist
+[Let's Encrypt](https://letsencrypt.org/)) you will have to whitelist
 your self-signed certificates before the websocket connections can occur.
 You may done so manually visiting the server homepage using SSL (i.e.
 going to https://localhost:4443 and adding a permanent exception).
