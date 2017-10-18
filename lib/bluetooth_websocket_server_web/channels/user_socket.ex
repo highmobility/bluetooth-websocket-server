@@ -3,6 +3,9 @@ defmodule BluetoothWebsocketServerWeb.UserSocket do
 
   ## Channels
   # channel "room:*", BluetoothWebsocketServerWeb.RoomChannel
+  channel "bws:battery", BluetoothWebsocketServerWeb.BatteryChannel
+  channel "bws:heart_rate", BluetoothWebsocketServerWeb.HeartRateChannel
+
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
