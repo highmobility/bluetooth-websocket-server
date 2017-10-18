@@ -19,9 +19,11 @@ going to https://localhost:4000 and adding a permanent exception).
 
 ### Enable SSL on localhost with Phoenix
 
-  1. Generate key with `openssl genrsa -out localhost.key 2048`
-  2. Generate cert with `openssl req -new -x509 -key localhost.key -out localhost.cert -days 3650 -subj /CN=localhost`
-  3. Put them in a directory `priv/keys/`
+```
+mkdir -p priv/keys/
+openssl genrsa -out priv/keys/localhost.key 2048
+openssl req -new -x509 -key priv/keys/localhost.key -out priv/keys/localhost.cert -days 3650 -subj /CN=localhost
+```
 
 
 ### To start your Phoenix server:
