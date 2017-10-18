@@ -6,11 +6,10 @@
 use Mix.Config
 
 # Configures the endpoint
-config :bluetooth_websocket_server, BluetoothWebsocketServer.Endpoint,
+config :bluetooth_websocket_server, BluetoothWebsocketServerWeb.Endpoint,
   url: [host: "localhost"],
-  root: Path.dirname(__DIR__),
-  secret_key_base: "IG7wR20+fBylSzJrX3sXGjyYRiHsK3277uv54zrHEID/I9IMCUMEInZ8M/9FrrAh",
-  render_errors: [accepts: ~w(html json)],
+  secret_key_base: "VptK6ZbSAfIRqKKGAs6EyOdmW4DJDmsUFtO3Hj0ny4TDPHy6IPxeas0POpNHW2rq",
+  render_errors: [view: BluetoothWebsocketServerWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: BluetoothWebsocketServer.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -22,8 +21,3 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
-
-# Configure phoenix generators
-config :phoenix, :generators,
-  migration: true,
-  binary_id: false
