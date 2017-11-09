@@ -5,7 +5,7 @@ defmodule BluetoothWebsocketServerWeb.BatteryChannel do
   @battery_service "0000180F-0000-1000-8000-00805f9b34fb"
   @battery_level_characteristic "00002A19-0000-1000-8000-00805f9b34fb"
 
-  @services [@battery_service]
+  @services ["battery_service"]
 
   def join("bws:battery", _message, socket) do
     Logger.debug "BatteryChannel joined by socket: #{inspect socket}"
@@ -19,7 +19,7 @@ defmodule BluetoothWebsocketServerWeb.BatteryChannel do
   end
 
   def handle_info(:after_join, socket) do
-    push socket, "request_device", %{ services: @services }
+    push socket, "request_device", %{ filters: [%{ services: @services }] }
 
     { :noreply, socket }
   end
@@ -27,7 +27,7 @@ defmodule BluetoothWebsocketServerWeb.BatteryChannel do
   def handle_in("device_found", params, socket) do
     Logger.debug "device_found: #{inspect params}"
 
-    push socket, "connect_device", %{ device_id: params["id"] }
+    push socket, "connect_device", %{ device_id: params["device_id"] }
 
     {:noreply, socket}
   end

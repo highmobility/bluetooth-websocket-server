@@ -5,7 +5,7 @@ defmodule BluetoothWebsocketServerWeb.HeartRateChannel do
   @heart_rate_service "0000180D-0000-1000-8000-00805f9b34fb"
   @heart_rate_level_characteristic "00002A37-0000-1000-8000-00805f9b34fb"
 
-  @services [@heart_rate_service]
+  @services ["heart_rate_service"]
 
   def join("bws:heart_rate", _message, socket) do
     Logger.debug "HeartRateChannel joined by socket: #{inspect socket}"
@@ -19,7 +19,7 @@ defmodule BluetoothWebsocketServerWeb.HeartRateChannel do
   end
 
   def handle_info(:after_join, socket) do
-    push socket, "request_device", %{ services: @services }
+    push socket, "request_device", %{ filters: [%{ services: @services }] }
 
     { :noreply, socket }
   end
@@ -27,7 +27,7 @@ defmodule BluetoothWebsocketServerWeb.HeartRateChannel do
   def handle_in("device_found", params, socket) do
     Logger.debug "device_found: #{inspect params}"
 
-    push socket, "connect_device", %{ device_id: params["id"] }
+    push socket, "connect_device", %{ device_id: params["device_id"] }
 
     {:noreply, socket}
   end
