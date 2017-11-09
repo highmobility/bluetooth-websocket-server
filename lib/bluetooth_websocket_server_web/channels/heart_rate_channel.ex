@@ -5,7 +5,7 @@ defmodule BluetoothWebsocketServerWeb.HeartRateChannel do
   @heart_rate_service "0000180D-0000-1000-8000-00805f9b34fb"
   @heart_rate_level_characteristic "00002A37-0000-1000-8000-00805f9b34fb"
 
-  @services ["heart_rate_service"]
+  @services [@heart_rate_service]
 
   def join("bws:heart_rate", _message, socket) do
     Logger.debug "HeartRateChannel joined by socket: #{inspect socket}"
